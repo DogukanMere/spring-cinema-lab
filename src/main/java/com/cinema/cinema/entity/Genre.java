@@ -9,11 +9,11 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Data
-@Table(name = "genres")
+@Table(name = "genre")
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int genreId;
+    private int id;
 
     private String name;
 

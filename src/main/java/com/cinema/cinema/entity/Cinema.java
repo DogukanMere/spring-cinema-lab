@@ -9,17 +9,17 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "cinemas")
+@Table(name = "cinema")
 public class Cinema {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "cinema_id")
     private int id;
 
     private String name;
     private String sponsoredName;
 
     @ManyToOne
+    @JoinColumn(name = "location_id")
     private Location location;
 
     @OneToMany(mappedBy = "cinema")

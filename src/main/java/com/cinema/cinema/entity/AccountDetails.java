@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 public class AccountDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_details_id")
     private int id;
 
     private String name;

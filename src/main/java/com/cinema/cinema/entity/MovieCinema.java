@@ -6,16 +6,16 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "movie_cinemas")
+@Table(name = "movie_cinema")
 public class MovieCinema {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "movie_cinema_id")
     private int id;
 
     @DateTimeFormat(style = "DATE")
@@ -26,6 +26,9 @@ public class MovieCinema {
 
     @ManyToOne
     private Movie movie;
+
+    @OneToMany(mappedBy = "movieCinema")
+    private List<Ticket> ticket;
 
     public MovieCinema(LocalDate dateTime) {
         this.dateTime = dateTime;

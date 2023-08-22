@@ -9,11 +9,10 @@ import java.util.List;
 @Data
 @Entity
 @NoArgsConstructor
-@Table(name = "locations")
+@Table(name = "location")
 public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "location_id")
     private int id;
 
     private String name;
