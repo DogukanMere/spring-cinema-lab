@@ -9,26 +9,23 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name = "account_details")
-public class AccountDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class AccountDetails extends BaseEntity {
 
     private String name;
     private String address;
     private String country;
     private String city;
     private String state;
-    private String age;
+    private Integer age;
     private String postalCode;
 
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToOne(mappedBy="accountdetails")
     private UserAccount useraccount;
 
-    public AccountDetails(String name, String address, String country, String city, String state, String age, String postalCode, Role role) {
+    public AccountDetails(String name, String address, String country, String city, String state, Integer age, String postalCode, Role role) {
         this.name = name;
         this.address = address;
         this.country = country;

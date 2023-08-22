@@ -1,6 +1,9 @@
 package com.cinema.cinema.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,10 +13,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Table(name = "location")
-public class Location {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Location extends BaseEntity {
 
     private String name;
     private String latitude;

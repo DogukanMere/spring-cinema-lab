@@ -10,10 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Table(name = "cinema")
-public class Cinema {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Cinema extends BaseEntity {
 
     private String name;
     private String sponsoredName;

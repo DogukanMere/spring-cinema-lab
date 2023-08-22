@@ -5,7 +5,6 @@ import com.cinema.cinema.enums.Type;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -15,24 +14,20 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Table(name = "movie")
-public class Movie {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Movie extends BaseEntity {
 
     private String name;
     private BigDecimal price;
 
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Type type;
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private State state;
 
-    @Column(name = "release_date")
-    @DateTimeFormat(style = "DATE")
+    @Column(name = "release_date", columnDefinition = "TIMESTAMP")
     private LocalDate releaseDate;
 
-    private String duration;
+    private Integer duration;
     private String summary;
 
     @OneToMany(mappedBy = "movie")
@@ -42,7 +37,7 @@ public class Movie {
     @JoinTable(name = "movie_genre_rel", joinColumns = @JoinColumn(name = "movie_id"), inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genres;
 
-    public Movie(String name, BigDecimal price, Type type, State state, LocalDate releaseDate, String duration, String summary) {
+    public Movie(String name, BigDecimal price, Type type, State state, LocalDate releaseDate, Integer duration, String summary) {
         this.name = name;
         this.price = price;
         this.type = type;

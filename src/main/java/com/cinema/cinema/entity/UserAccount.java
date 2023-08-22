@@ -10,16 +10,13 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @Table(name = "user_account")
-public class UserAccount {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class UserAccount extends BaseEntity{
 
     private String email;
     private String password;
     private String username;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "account_details_id")
     private AccountDetails accountdetails;
 

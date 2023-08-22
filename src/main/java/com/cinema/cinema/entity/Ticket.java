@@ -3,37 +3,30 @@ package com.cinema.cinema.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
 @NoArgsConstructor
 @Table(name = "ticket")
-public class Ticket {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+public class Ticket extends BaseEntity {
 
-    @Column(name = "date_time")
-    @DateTimeFormat(style = "DATE")
-    private LocalDate dateTime;
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime dateTime;
 
-    @Column(name = "seat_number")
-    private String seatNumber;
+    private Integer seatNumber;
+    private Integer rowNumber;
 
-    @Column(name = "row_number")
-    private String rowNumber;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private UserAccount userAccount;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private MovieCinema movieCinema;
 
-    public Ticket(LocalDate dateTime, String rowNumber) {
+    public Ticket(LocalDateTime dateTime, Integer seatNumber, Integer rowNumber) {
         this.dateTime = dateTime;
+        this.seatNumber = seatNumber;
         this.rowNumber = rowNumber;
     }
 }

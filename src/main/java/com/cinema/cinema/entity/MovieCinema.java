@@ -3,34 +3,29 @@ package com.cinema.cinema.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @Table(name = "movie_cinema")
-public class MovieCinema {
+public class MovieCinema extends BaseEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(columnDefinition = "TIMESTAMP")
+    private LocalDateTime dateTime;
 
-    @DateTimeFormat(style = "DATE")
-    private LocalDate dateTime;
-
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Cinema cinema;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Movie movie;
 
     @OneToMany(mappedBy = "movieCinema")
     private List<Ticket> ticket;
 
-    public MovieCinema(LocalDate dateTime) {
+    public MovieCinema(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
 
